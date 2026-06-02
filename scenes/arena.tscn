@@ -81,6 +81,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ug7gw"]
 size = Vector2(1024, 100)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olpmc"]
+size = Vector2(1024, 38)
+
 [node name="Arena" type="Node2D" unique_id=1430657477]
 script = ExtResource("1_wl4x5")
 
@@ -111,3 +114,9 @@ speed_scale = 2.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1562595340]
 position = Vector2(512, 526)
 shape = SubResource("RectangleShape2D_ug7gw")
+
+[node name="Ceiling" type="StaticBody2D" parent="." unique_id=1327635683]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling" unique_id=61623577]
+position = Vector2(512, -19)
+shape = SubResource("RectangleShape2D_olpmc")
