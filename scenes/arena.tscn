@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://baak6u538na30"]
+
+[ext_resource type="Script" uid="uid://dwti74iadp8q" path="res://scripts/arena.gd" id="1_wl4x5"]
+[ext_resource type="Texture2D" uid="uid://bmyshraiy6kh5" path="res://assets/images/arena_floor.png" id="2_olpmc"]
+[ext_resource type="Texture2D" uid="uid://cqwi2pa3nuf3l" path="res://assets/images/arena_bg.png" id="2_xdvfk"]
+
+[sub_resource type="Animation" id="Animation_olpmc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(550, 288)]
+}
+
+[sub_resource type="Animation" id="Animation_xdvfk"]
+resource_name = "scroll"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(969, 288), Vector2(323, 288)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ft05"]
+_data = {
+&"RESET": SubResource("Animation_olpmc"),
+&"scroll": SubResource("Animation_xdvfk")
+}
+
+[sub_resource type="Animation" id="Animation_7ft05"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Floor/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(573, 526)]
+}
+
+[sub_resource type="Animation" id="Animation_4ag8t"]
+resource_name = "scroll"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Floor/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(573, 526), Vector2(451, 526)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dpxgc"]
+_data = {
+&"RESET": SubResource("Animation_7ft05"),
+&"scroll": SubResource("Animation_4ag8t")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ug7gw"]
+size = Vector2(1024, 100)
+
+[node name="Arena" type="Node2D" unique_id=1430657477]
+script = ExtResource("1_wl4x5")
+
+[node name="Background" type="Node2D" parent="." unique_id=504141567]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=1075847939]
+position = Vector2(550, 288)
+texture = ExtResource("2_xdvfk")
+
+[node name="SpriteScroll" type="AnimationPlayer" parent="Background" unique_id=1025370782]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_7ft05")
+autoplay = &"scroll"
+speed_scale = 0.25
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=80102810]
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=1830038275]
+position = Vector2(573, 526)
+texture = ExtResource("2_olpmc")
+
+[node name="SpriteScroll" type="AnimationPlayer" parent="Floor" unique_id=210725375]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_dpxgc")
+autoplay = &"scroll"
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1562595340]
+position = Vector2(512, 526)
+shape = SubResource("RectangleShape2D_ug7gw")
