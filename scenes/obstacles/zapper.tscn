@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://da6frtgaxqpfc"]
+
+[ext_resource type="Script" uid="uid://byptdwilpl6nh" path="res://scripts/zapper.gd" id="1_fmpsa"]
+[ext_resource type="Texture2D" uid="uid://e0536xedqvq6" path="res://assets/images/laser_segment.png" id="2_kuun8"]
+[ext_resource type="Texture2D" uid="uid://c3ihrl3xoksl" path="res://assets/images/zapper_probe.png" id="3_eoax6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnnan"]
+radius = 15.0
+height = 98.0
+
+[node name="Zapper" type="Area2D" unique_id=2026004518]
+script = ExtResource("1_fmpsa")
+
+[node name="ZapLine" type="Line2D" parent="." unique_id=290580198]
+width = 40.0
+texture = ExtResource("2_kuun8")
+texture_mode = 1
+
+[node name="ProbeSprite1" type="Sprite2D" parent="." unique_id=1307648658]
+position = Vector2(34.999996, 32.999996)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_eoax6")
+
+[node name="ProbeSprite2" type="Sprite2D" parent="." unique_id=1345931586]
+position = Vector2(158.99998, 88.99999)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_eoax6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=942032672]
+position = Vector2(35, 49)
+shape = SubResource("CapsuleShape2D_qnnan")
