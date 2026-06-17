@@ -8,7 +8,7 @@ func _ready() -> void:
 	place_probes()
 	generate_line()
 	generate_coll_shape()
-	
+
 func place_probes() -> void:
 	# Get distance and direction (using polar coords)
 	var distance: float = randf_range(PROBE_MIN_DIST, PROBE_MAX_DIST)
@@ -18,12 +18,8 @@ func place_probes() -> void:
 	).normalized()
 	
 	# Set distances of the probes
-	$ProbeSprite1.position = distance * direction
-	$ProbeSprite2.position = distance * -direction
-	
-	# TODO: remove this - for debugging
-	$ProbeSprite1.position += Vector2(200.0, 200.0)
-	$ProbeSprite2.position += Vector2(200.0, 200.0)
+	$ProbeSprite1.position = position + (distance * direction)
+	$ProbeSprite2.position = position + (distance * -direction)
 	
 	# Make probes point in direction of laser
 	$ProbeSprite1.look_at($ProbeSprite2.position)

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const MAX_Y_SPEED: float = 400.0
-const Y_ACCEL: float = 2000.0
+const Y_ACCEL: float = 2500.0
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
