@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	for obs in $Obstacles.get_children():
-		obs.position.x -= run_speed * delta;
+		obs.position.x -= run_speed * delta;	# TODO: create global variable to hold the run speed
 
 func generate_obstacle() -> void:
 	var zapper: Node2D = zapper_scene.instantiate()

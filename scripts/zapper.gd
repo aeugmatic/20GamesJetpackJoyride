@@ -2,12 +2,19 @@ extends Area2D
 
 const PROBE_MIN_DIST: float = 75.0 # min distance probe can be from origin
 const PROBE_MAX_DIST: float = 120.0 # max distance probe can be from origin
+const ANG_SPEED: float = 0.025
+
+var rotating: bool = false
 
 func _ready() -> void:
 	# Create the zapper
 	place_probes()
 	generate_line()
 	generate_coll_shape()
+
+func _process(delta: float) -> void:
+	if rotating:
+		rotation += ANG_SPEED
 
 func place_probes() -> void:
 	# Get distance and direction (using polar coords)
@@ -42,3 +49,6 @@ func generate_coll_shape() -> void:
 	# Rotate shape to fit zapper
 	$CollisionShape2D.look_at($ProbeSprite1.position) # shape is perpendicular to laser line...
 	$CollisionShape2D.rotate(PI / 2.0) # ...so rotate the shape by 90deg to correct that
+
+func toggle_rotating() -> void:
+	rotating = not rotating
